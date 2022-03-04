@@ -1,15 +1,39 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
+  print("Telescope did not load.")
   return
 end
 
-local actions = require "telescope.actions"
+-- Adding this here because I can't figure our why its not working for mappings
+vim.api.nvim_set_keymap("n", "<Leader>ff", "<cmd>Telescope find_files<cr>", { })
+vim.api.nvim_set_keymap("n", "<Leader>fb", "<cmd>Telescope buffers<cr>", { })
+vim.api.nvim_set_keymap("n", "<Leader>fh", "<cmd>Telescope help_tags<cr>", { })
+vim.api.nvim_set_keymap("n", "<Leader>fg", "<cmd>Telescope live_grep<cr>", { })
 
+
+local actions = require "telescope.actions"
+require("telescope").load_extension("project")
+--require("telescope").load_extension("git_worktree")
+require("telescope").load_extension("fzy_native")
 telescope.setup {
   defaults = {
+    file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+    grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+    vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+    },
 
-    prompt_prefix = " ",
-    selection_caret = " ",
+    file_sorter = require("telescope.sorters").get_fzy_sorter,
+    prompt_prefix = " >",
+    color_devicons = true,
+    selection_caret = "> ",
     path_display = { "smart" },
 
     mappings = {
@@ -74,6 +98,7 @@ telescope.setup {
         ["<PageDown>"] = actions.results_scrolling_down,
 
         ["?"] = actions.which_key,
+
       },
     },
   },
@@ -87,10 +112,17 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
-    -- Your extension configuration goes here:
-    -- extension_name = {
-    --   extension_config_key = value,
-    -- }
-    -- please take a look at the readme of the extension you want to configure
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        },
+       project = {
+           base_dirs = {
+             {path='~/src/cxlabs/cloud-autopods.git'},
+           },
+           hidden_files = true, -- default: false
+           change_dir = true
+       }
   },
 }
+

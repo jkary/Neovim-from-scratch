@@ -44,8 +44,8 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "numToStr/Comment.nvim" -- Easily comment stuff
+  use 'tpope/vim-commentary'
   use "kyazdani42/nvim-web-devicons"
   use "kyazdani42/nvim-tree.lua"
   use "akinsho/bufferline.nvim"
@@ -62,6 +62,10 @@ return packer.startup(function(use)
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/darkplus.nvim"
+  use 'rafi/awesome-vim-colorschemes'
+  use 'morhetz/gruvbox'
+  use 'Murtaza-Udaipurwala/gruvqueen'
+  -- use 'altercation/vim-colors-solarized'
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -70,6 +74,9 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
+  use 'hrsh7th/cmp-nvim-lua'
+  use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+  use 'windwp/nvim-autopairs'
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -80,20 +87,68 @@ return packer.startup(function(use)
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
   use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use 'tomv564/pyls-mypy'
+  use 'microsoft/pyright'
+  use 'juliosueiras/terraform-lsp' 
+  use 'pedro757/emmet'
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use 'nvim-telescope/telescope-fzy-native.nvim'
+  use 'nvim-telescope/telescope-project.nvim'
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
+  use 'nvim-treesitter/playground'
   use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+  use 'tpope/vim-fugitive'
 
+  -- Debug Plugin
+  use 'mfussenegger/nvim-dap'
+  use 'actboy168/lua-debug'
+
+  -- The Primeagen
+  use 'ThePrimeagen/git-worktree.nvim'
+  use 'ThePrimeagen/harpoon'
+
+-- Python plugins
+  use {
+    'amirali/yapf.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require('yapf').setup {}
+    end,
+  }
+-- use 'nvie/vim-flake8'
+-- use 'ambv/black'
+-- use 'python-rope/pylsp-rope'
+-- use 'paradoxxxzero/pyls-isort'
+-- use 'rupert/pyls-black'
+
+-- use 'vim-utils/vim-man'
+-- use 'mbbill/undotree'
+-- use 'hrsh7th/nvim-compe'
+-- use 'pechorin/any-jump.vim'
+-- use 'Shougo/deoplete.nvim'
+-- use 'deoplete-plugins/deoplete-jedi'
+-- use 'dense-analysis/ale'
+   use 'junegunn/fzf'
+   use 'junegunn/fzf.vim'
+-- use 'tmhedberg/SimpylFold'
+-- use 'vim-scripts/indentpython.vim'
+-- use 'vim-syntastic/syntastic'
+-- use 'jnurmine/Zenburn'
+-- use 'scrooloose/nerdtree'
+-- use 'kien/ctrlp.vim'
+-- use 'mhinz/vim-rfc'
+  use 'sbdchd/neoformat'
+  
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

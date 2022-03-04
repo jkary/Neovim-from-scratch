@@ -8,6 +8,14 @@ if not snip_status_ok then
   return
 end
 
+local snip_status_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not snip_status_ok then
+  print("Tab Nine is not running")
+  return
+end
+
+require'luasnip'.filetype_extend("python", {"python"})
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -15,6 +23,17 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+tabnine:setup({
+	max_lines = 1000;
+	max_num_results = 20;
+	sort = true;
+	run_on_every_keystroke = true;
+	snippet_placeholder = '..';
+	ignored_file_types = { -- default is not to ignore
+		-- uncomment to ignore in lua:
+		-- lua = true
+	};
+})
 --   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
@@ -53,7 +72,7 @@ cmp.setup {
   },
   mapping = {
     ["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
+    ["<C-j>"] = cmp.mapping.select_next_item(),
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -101,6 +120,7 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
+        cmp_tabnine = "[Tabnine]",
         nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
@@ -110,6 +130,7 @@ cmp.setup {
     end,
   },
   sources = {
+    { name = "cmp_tabnine" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },
@@ -127,3 +148,7 @@ cmp.setup {
     native_menu = false,
   },
 }
+
+-- Emmet-ls completion trigger
+-- let g:completion_trigger_character = ['.']
+-- vim.opt_global.completion_trigger_character = '.'

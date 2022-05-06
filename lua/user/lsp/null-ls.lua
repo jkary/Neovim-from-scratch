@@ -20,7 +20,7 @@ null_ls.setup({
 				"--print-width",
 				"88",
 			},
-			filetypes = { "html", "json", "yaml", "markdown", "toml" },
+			filetypes = { "html", "json", "yaml", "markdown", "toml", "html" },
 			disabled_filetypes = { "typescript", "javascript", "javascriptreact" },
 		}),
 		null_ls.builtins.formatting.codespell,

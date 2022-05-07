@@ -40,7 +40,7 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	-- My plugins here
+	-- My jkary plugins here
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
@@ -91,6 +91,9 @@ return packer.startup(function(use)
 	use("microsoft/pyright")
 	use("juliosueiras/terraform-lsp")
 	use("pedro757/emmet")
+	use("ray-x/lsp_signature.nvim")
+	use("RRethy/vim-illuminate")
+	use("b0o/SchemaStore.nvim")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")

@@ -140,9 +140,6 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-  },
   experimental = {
     ghost_text = false,
     native_menu = false,
@@ -150,5 +147,4 @@ cmp.setup {
 }
 
 -- Emmet-ls completion trigger
--- let g:completion_trigger_character = ['.']
--- vim.opt_global.completion_trigger_character = '.'
+vim.g.completion_trigger_character = '.'

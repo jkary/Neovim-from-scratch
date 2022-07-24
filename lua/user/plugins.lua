@@ -51,7 +51,7 @@ return packer.startup(function(use)
 	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
-	use("akinsho/toggleterm.nvim")
+	-- use("akinsho/toggleterm.nvim")
 	use("ahmedkhalf/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
@@ -94,6 +94,8 @@ return packer.startup(function(use)
 	use("ray-x/lsp_signature.nvim")
 	use("RRethy/vim-illuminate")
 	use("b0o/SchemaStore.nvim")
+	-- use("ambv/black")
+	use("rupert/pyls-black")
 
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
@@ -135,11 +137,13 @@ return packer.startup(function(use)
 			require("yapf").setup({})
 		end,
 	})
+
+	-- Markdown Plugin
+	use({ "iamcco/markdown-preview.nvim" })
+
 	-- use 'nvie/vim-flake8'
-	-- use 'ambv/black'
 	-- use 'python-rope/pylsp-rope'
 	-- use 'paradoxxxzero/pyls-isort'
-	-- use 'rupert/pyls-black'
 
 	-- use 'vim-utils/vim-man'
 	-- use 'mbbill/undotree'

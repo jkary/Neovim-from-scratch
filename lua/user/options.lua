@@ -39,8 +39,7 @@ local options = {
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   colorcolumn = "88",
   textwidth = 88,
-  relativenumber = true
-
+  relativenumber = true,
 }
 
 vim.opt.shortmess:append "c"
@@ -48,6 +47,12 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+-- 
+-- Set python interpreter 
+--
+vim.g.python3_host_prog = "/Users/jkary/.pyenv/shims/python"
+
 
 -- Set blinking insert cursor
 --

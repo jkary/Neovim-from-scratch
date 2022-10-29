@@ -8,8 +8,8 @@ if not snip_status_ok then
   return
 end
 
-local snip_status_ok, tabnine = pcall(require, "cmp_tabnine.config")
-if not snip_status_ok then
+local cpm_tabnine_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not cpm_tabnine_ok then
   print("Tab Nine is not running")
   return
 end

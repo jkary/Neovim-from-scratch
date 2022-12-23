@@ -33,12 +33,13 @@ lsp_installer.on_server_ready(function(server)
 	end
 
 	if server.name == "ls_emmet" then
-        print("EMMET section!")
+		print("EMMET section!")
 		local emmet_ls_opts = require("user.lsp.settings.emmet_ls")
 		opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
 	end
+
+	print(server.name)
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)
 end)
-

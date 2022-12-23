@@ -22,7 +22,7 @@ null_ls.setup({
 				"88",
 			},
 			filetypes = { "html", "json", "yaml", "markdown", "toml", "html" },
-			disabled_filetypes = { "typescript", "javascript", "javascriptreact", "lua" },
+			disabled_filetypes = { "typescript", "javascript", "javascriptreact", "lua", "go" },
 		}),
 		formatting.codespell,
 		formatting.isort,

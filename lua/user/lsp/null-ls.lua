@@ -27,7 +27,7 @@ null_ls.setup({
 		formatting.codespell,
 		formatting.isort,
 		formatting.black.with({ extra_args = { "--fast" } }),
-		formatting.styelua,
+		-- formatting.styelua,
 		diagnostics.flake8,
 		code_actions.refactoring,
 	},

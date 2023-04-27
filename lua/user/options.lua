@@ -51,7 +51,7 @@ end
 -- 
 -- Set python interpreter 
 --
-vim.g.python3_host_prog = "/Users/jkary/.pyenv/shims/python"
+-- vim.g.python3_host_prog = "/Users/jkary/.pyenv/shims/python"
 
 
 -- Set blinking insert cursor

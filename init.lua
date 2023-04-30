@@ -17,9 +17,8 @@ require("user.nvim-tree")
 -- require "user.impatient"
 -- require "user.indentline"
 -- require "user.alpha"
--- require "user.whichkey"
+require "user.whichkey"
 require("user.autocommands")
 require("user.primeagen")
 require("user.markdown")
-require("user.autocommands")
 require("user.illuminate")

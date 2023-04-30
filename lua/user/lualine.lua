@@ -62,32 +62,47 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
-lualine.setup({
-	options = {
-		icons_enabled = true,
-		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
-		disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline" },
-		always_divide_middle = true,
-	},
-	sections = {
-		lualine_a = { branch, diagnostics },
-		lualine_b = { mode },
-		lualine_c = {},
-		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = { progress },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
-	tabline = {},
-	extensions = {},
-})
+local nvim_gps = function()
+  local gps_location = gps.get_location()
+  if gps_location == "error" then
+    return ""
+  else
+    return gps.get_location()
+  end
+end
+
+lualine.setup {
+  options = {
+    globalstatus = true,
+    icons_enabled = true,
+    theme = "auto",
+    component_separators = { left = "", right = "" },
+    section_separators = { left = "", right = "" },
+    -- disabled_filetypes = { "alpha", "dashboard", "NvimTree", "Outline", "toggleterm" },
+    disabled_filetypes = { "alpha", "dashboard", "toggleterm" },
+    always_divide_middle = true,
+  },
+  sections = {
+    -- lualine_a = { branch, diagnostics },
+    lualine_a = { branch },
+    lualine_b = { diagnostics },
+    -- lualine_c = { _gps },
+    lualine_c = {
+      { nvim_gps, cond = hide_in_width },
+    },
+    -- lualine_x = { "encoding", "fileformat", "filetype" },
+    lualine_x = { diff, spaces, "encoding", filetype },
+    lualine_y = { location },
+    lualine_z = { progress },
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = { "location" },
+    lualine_y = {},
+    lualine_z = {},
+  },
+  tabline = {},
+  extensions = {},
+}

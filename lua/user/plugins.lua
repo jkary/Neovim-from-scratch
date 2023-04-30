@@ -94,6 +94,11 @@ return packer.startup(function(use)
 	-- use 'altercation/vim-colors-solarized'
 
 	-- cmp plugins
+    -- use "hrsh7th/nvim-cmp" -- The completion plugin
+    use {
+      "hrsh7th/nvim-cmp",
+      -- commit = "dbc72290295cfc63075dab9ea635260d2b72f2e5",
+    }
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
@@ -102,9 +107,30 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-nvim-lsp")
 	use("hrsh7th/cmp-nvim-lua")
 	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
-	use("windwp/nvim-autopairs")
+	use("windwp/nvim-autopairs") -- Not sure if I still need this anymore JK
+  use "hrsh7th/cmp-emoji"
+  use "rcarriga/cmp-dap"
+  use {
+    "tzachar/cmp-tabnine",
+    config = function()
+      local tabnine = require "cmp_tabnine.config"
+      tabnine:setup {
+        max_lines = 1000,
+        max_num_results = 20,
+        sort = true,
+        run_on_every_keystroke = true,
+        snippet_placeholder = "..",
+        ignored_file_types = { -- default is not to ignore
+          -- uncomment to ignore in lua:
+          -- lua = true
+        },
+      }
+    end,
+    run = "./install.sh",
+    requires = "hrsh7th/nvim-cmp",
+  }
 
-	-- snippets
+    -- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
@@ -142,7 +168,6 @@ return packer.startup(function(use)
 
 	-- Debug Plugin
 	use("mfussenegger/nvim-dap")
-	use("actboy168/lua-debug")
 
 	-- The Primeagen
 	use("ThePrimeagen/git-worktree.nvim")

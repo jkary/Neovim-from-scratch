@@ -168,6 +168,7 @@ return packer.startup(function(use)
 
 	-- Debug Plugin
 	use("mfussenegger/nvim-dap")
+	-- use("actboy168/lua-debug")
 
 	-- The Primeagen
 	use("ThePrimeagen/git-worktree.nvim")

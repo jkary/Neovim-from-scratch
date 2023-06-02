@@ -94,19 +94,15 @@ return packer.startup(function(use)
 	-- use 'altercation/vim-colors-solarized'
 
 	-- cmp plugins
-    -- use "hrsh7th/nvim-cmp" -- The completion plugin
-    use {
-      "hrsh7th/nvim-cmp",
-      -- commit = "dbc72290295cfc63075dab9ea635260d2b72f2e5",
-    }
 	use("hrsh7th/nvim-cmp") -- The completion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
 	use("hrsh7th/cmp-path") -- path completions
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-nvim-lua")
-	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+	use("hrsh7th/cmp-nvim-lua") 
+	use { 'codota/tabnine-nvim', run = "./dl_binaries.sh" }
+  -- use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 	use("windwp/nvim-autopairs") -- Not sure if I still need this anymore JK
   use "hrsh7th/cmp-emoji"
   use "rcarriga/cmp-dap"
@@ -219,6 +215,9 @@ return packer.startup(function(use)
 	use("kevinhwang91/nvim-bqf")
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
+
+
+      use 'edganiukov/vim-gol'
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

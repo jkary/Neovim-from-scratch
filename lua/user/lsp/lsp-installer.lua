@@ -11,7 +11,7 @@ local servers = {
   -- "jdtls",
   "jsonls",
 --  "solc",
---  "sumneko_lua",
+  "lua_ls",
   "tflint",
   "tsserver",
   "pyright",
@@ -65,9 +65,9 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
   end
 
-  if server == "sumneko_lua" then
-    local sumneko_opts = require "user.lsp.settings.sumneko_lua"
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  if server == "ls_lua" then
+    local ls_lua = require "user.lsp.settings.ls_lua"
+    opts = vim.tbl_deep_extend("force", ls_lua, opts)
   end
 
   if server == "pyright" then

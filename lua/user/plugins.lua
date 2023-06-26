@@ -217,7 +217,19 @@ return packer.startup(function(use)
 	-- Put this at the end after all plugins
 
 
-      use 'edganiukov/vim-gol'
+    use 'edganiukov/vim-gol'
+
+    -- CODY from sourcegraph
+    use(
+      {
+        "sourcegraph/cody.nvim",
+        config = function()
+            require("cody").setup({
+                accessToken = "sgp_4e2ac8ba2632df204c27b1b9808ecf7c1a8d4a87",
+            })
+        end
+      }
+    )
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

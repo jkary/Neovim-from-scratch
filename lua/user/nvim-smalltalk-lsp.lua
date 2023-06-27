@@ -10,6 +10,7 @@ local st_generator = h.generator_factory({
             args = { "-q", "-g", "-f", "$FILENAME" },
             format = "line",
             from_stderr = true,
+            to_temp_file = true,
             check_exit_code = function( code, stderr )
               local success = code <= 1
 

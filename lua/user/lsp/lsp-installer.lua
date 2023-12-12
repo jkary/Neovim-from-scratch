@@ -15,7 +15,9 @@ local servers = {
   "tflint",
   "tsserver",
   "pyright",
-  "tailwindcss"
+  "tailwindcss",
+  "gopls",
+  "golangci_lint_ls"
 }
 
 local settings = {

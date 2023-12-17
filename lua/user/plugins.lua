@@ -217,7 +217,6 @@ return packer.startup(function(use)
   -- Put this at the end after all plugins
 
 
-  use 'edganiukov/vim-gol'
 
   -- CODY from sourcegraph
   use(

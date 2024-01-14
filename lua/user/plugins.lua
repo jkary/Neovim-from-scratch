@@ -26,6 +26,7 @@ local ensure_packer = function()
   return false
 end
 
+
 local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
@@ -130,20 +131,20 @@ return packer.startup(function(use)
   use("L3MON4D3/LuaSnip")             --snippet engine
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-  -- LSP
-  use("neovim/nvim-lspconfig")           -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-  use("tamago324/nlsp-settings.nvim")    -- language server settings defined in json for
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-  use("tomv564/pyls-mypy")
-  use("microsoft/pyright")
-  use("juliosueiras/terraform-lsp")
-  use("pedro757/emmet")
-  use("ray-x/lsp_signature.nvim")
-  use("RRethy/vim-illuminate")
-  use("b0o/SchemaStore.nvim")
-  use("ambv/black")
-  use("rupert/pyls-black")
+	-- LSP
+	use("neovim/nvim-lspconfig") -- enable LSP
+	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
+	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	use("tomv564/pyls-mypy")
+	-- use("microsoft/pyright")
+	use("juliosueiras/terraform-lsp")
+	use("pedro757/emmet")
+	use("ray-x/lsp_signature.nvim")
+	use("RRethy/vim-illuminate")
+	use("b0o/SchemaStore.nvim")
+	use("ambv/black")
+	use("rupert/pyls-black")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")

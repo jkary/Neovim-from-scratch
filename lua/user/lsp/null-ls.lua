@@ -10,25 +10,25 @@ local diagnostics = null_ls.builtins.diagnostics
 local code_actions = null_ls.builtins.code_actions
 
 null_ls.setup({
-  debug = false,
-  sources = {
-    formatting.prettier.with({
-        extra_args = {
-            "--no-semi",
-            "--single-quote",
-            "--jsx-single-quote",
-            "--print-width",
-            "-w",
-            "88",
-        },
-        filetypes = { "html", "json", "yaml", "markdown", "toml", "html"},
-        disabled_filetypes = { "typescript", "javascript", "javascriptreact", "lua", "go" },
-    }),
-    formatting.codespell,
-    formatting.isort,
-    formatting.black.with({ extra_args = { "--fast" } }),
-    -- formatting.styelua,
-    diagnostics.flake8,
-    code_actions.refactoring,
-  },
+	debug = false,
+	sources = {
+		formatting.prettier.with({
+			extra_args = {
+				"--no-semi",
+				"--single-quote",
+				"--jsx-single-quote",
+				"--print-width",
+                "-w",
+				"88",
+			},
+			filetypes = { "html", "json", "yaml", "markdown", "toml", "html" },
+			disabled_filetypes = { "typescript", "javascript", "javascriptreact", "lua", "go", "python" },
+		}),
+		formatting.codespell,
+		-- formatting.isort,
+		-- formatting.black.with({ extra_args = { "--fast" } }),
+		-- formatting.styelua,
+		-- diagnostics.flake8,
+		code_actions.refactoring,
+	},
 })

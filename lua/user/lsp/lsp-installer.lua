@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local status_ok, util = pcall(require, "lspconfig/util")
+if not status_ok then
+	return
+end
+
 local servers = {
   "cssls",
   "cssmodules_ls",
@@ -10,12 +15,16 @@ local servers = {
   "html",
   -- "jdtls",
   "jsonls",
-  --  "solc",
   "lua_ls",
   "tflint",
   "tsserver",
-  "pyright",
   "tailwindcss",
+  --  "pyright",
+  "pylsp",
+--  "solc",
+  -- "lua-ls",
+  "tflint",
+  "tsserver",
   "gopls",
   "golangci_lint_ls"
 }
@@ -74,10 +83,17 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", ls_lua, opts)
   end
 
-  if server == "pyright" then
-    local pyright_opts = require "user.lsp.settings.pyright"
-    opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-  end
+  -- if server == "pyright" then
+  --   local pyright_opts = require "user.lsp.settings.pyright"
+  --   opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+  -- end
+
+  -- Testing python-lsp-server
+
+  if server == "pylsp" then
+    local pylsp_opts = require "user.lsp.settings.python_lsp_server"
+    opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
+  end 
 
   if server == "solang" then
     local solang_opts = require "user.lsp.settings.solang"
@@ -93,6 +109,28 @@ for _, server in pairs(servers) do
     local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
     opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
   end
+
+  if server == "gopls" then
+    local gopls_opts = {
+      cmd = {"gopls", "serve"},
+      filetypes = {"go", "gomod"},
+      root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      },
+    }
+    opts = vim.tbl_deep_extend("force", gopls_opts, opts)
+  end
+
+  -- if server == "sumneko_lua" then
+  --   local sumneko_opts = require "user.lsp.settings.sumneko_lua"
+  --   opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  -- end 
 
   lspconfig[server].setup(opts)
 end

@@ -19,6 +19,7 @@ local servers = {
   "tflint",
   "tsserver",
   "tailwindcss",
+  "clangd",
   --  "pyright",
   "pylsp",
 --  "solc",
@@ -26,7 +27,9 @@ local servers = {
   "tflint",
   "tsserver",
   "gopls",
-  "golangci_lint_ls"
+  "golangci_lint_ls",
+  "ansiblels",
+  "yamllint"
 }
 
 local settings = {

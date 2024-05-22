@@ -21,7 +21,7 @@ null_ls.setup({
                 "-w",
 				"88",
 			},
-			filetypes = { "html", "json", "yaml", "markdown", "toml", "html" },
+			filetypes = { "json", "yaml", "markdown", "toml", "html" },
 			disabled_filetypes = { "typescript", "javascript", "javascriptreact", "lua", "go", "python" },
 		}),
 		formatting.codespell,
@@ -30,5 +30,6 @@ null_ls.setup({
 		-- formatting.styelua,
 		-- diagnostics.flake8,
 		code_actions.refactoring,
+        diagnostics.ansiblelint
 	},
 })

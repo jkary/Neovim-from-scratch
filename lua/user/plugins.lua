@@ -87,7 +87,7 @@ return packer.startup(function(use)
   use("folke/which-key.nvim")
 
   -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use("lunarvim/darkplus.nvim")
   use("rafi/awesome-vim-colorschemes")
   use("morhetz/gruvbox")
@@ -131,20 +131,20 @@ return packer.startup(function(use)
   use("L3MON4D3/LuaSnip")             --snippet engine
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
-	use("tomv564/pyls-mypy")
-	-- use("microsoft/pyright")
-	use("juliosueiras/terraform-lsp")
-	use("pedro757/emmet")
-	use("ray-x/lsp_signature.nvim")
-	use("RRethy/vim-illuminate")
-	use("b0o/SchemaStore.nvim")
-	use("ambv/black")
-	use("rupert/pyls-black")
+  -- LSP
+  use("neovim/nvim-lspconfig")           -- enable LSP
+  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  use("tamago324/nlsp-settings.nvim")    -- language server settings defined in json for
+  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use("tomv564/pyls-mypy")
+  -- use("microsoft/pyright")
+  use("juliosueiras/terraform-lsp")
+  use("pedro757/emmet")
+  use("ray-x/lsp_signature.nvim")
+  use("RRethy/vim-illuminate")
+  use("b0o/SchemaStore.nvim")
+  use("ambv/black")
+  use("rupert/pyls-black")
 
   -- Telescope
   use("nvim-telescope/telescope.nvim")
@@ -220,16 +220,16 @@ return packer.startup(function(use)
 
 
   -- CODY from sourcegraph
-  use(
-    {
-      "sourcegraph/cody.nvim",
-      config = function()
-        require("cody").setup({
-          accessToken = "sgp_4e2ac8ba2632df204c27b1b9808ecf7c1a8d4a87",
-        })
-      end
-    }
-  )
+  -- use(
+  --   {
+  --     "sourcegraph/cody.nvim",
+  --     config = function()
+  --       require("cody").setup({
+  --         accessToken = "sgp_4e2ac8ba2632df204c27b1b9808ecf7c1a8d4a87",
+  --       })
+  --     end
+  --   }
+  -- )
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

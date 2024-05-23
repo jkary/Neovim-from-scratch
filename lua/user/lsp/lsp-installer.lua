@@ -5,7 +5,7 @@ end
 
 local status_ok, util = pcall(require, "lspconfig/util")
 if not status_ok then
-	return
+  return
 end
 
 local servers = {
@@ -22,7 +22,9 @@ local servers = {
   "clangd",
   --  "pyright",
   "pylsp",
---  "solc",
+  "ruff_lsp",
+  "jinja_lsp",
+  --  "solc",
   -- "lua-ls",
   "tflint",
   "tsserver",
@@ -96,7 +98,7 @@ for _, server in pairs(servers) do
   if server == "pylsp" then
     local pylsp_opts = require "user.lsp.settings.python_lsp_server"
     opts = vim.tbl_deep_extend("force", pylsp_opts, opts)
-  end 
+  end
 
   if server == "solang" then
     local solang_opts = require "user.lsp.settings.solang"
@@ -115,8 +117,8 @@ for _, server in pairs(servers) do
 
   if server == "gopls" then
     local gopls_opts = {
-      cmd = {"gopls", "serve"},
-      filetypes = {"go", "gomod"},
+      cmd = { "gopls", "serve" },
+      filetypes = { "go", "gomod" },
       root_dir = util.root_pattern("go.work", "go.mod", ".git"),
       settings = {
         gopls = {
@@ -130,10 +132,15 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", gopls_opts, opts)
   end
 
+  if server == "jinja_lsp" then
+    local lsp_opts = require "user.lsp.settings.jinja2"
+    opts = vim.tbl_deep_extend("force", lsp_opts, opts)
+  end
+
   -- if server == "sumneko_lua" then
   --   local sumneko_opts = require "user.lsp.settings.sumneko_lua"
   --   opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  -- end 
+  -- end
 
   lspconfig[server].setup(opts)
 end

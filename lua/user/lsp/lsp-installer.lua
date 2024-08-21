@@ -13,12 +13,17 @@ end
 
 local servers = {
   --  "pyright",
---   "pylsp",
---   "jinja_lsp",
---   "gopls",
---   "golangci_lint_ls",
-   "ansiblels",
---   "yamllint",
+  "pylsp",
+  "ruff",
+  "jinja_lsp",
+  --  "solc",
+  -- "lua-ls",
+  "tflint",
+  "ts_ls",
+  "gopls",
+  -- "golangci_lint_ls", -- fails to work on mac???
+  "ansiblels",
+  -- "yamllint"
 }
 
 local settings = {

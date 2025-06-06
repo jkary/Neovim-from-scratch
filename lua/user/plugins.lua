@@ -133,7 +133,13 @@ return packer.startup(function(use)
 
   -- LSP
   use("neovim/nvim-lspconfig")           -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+--  use("williamboman/nvim-lsp-installer") -- simple to use language server installer
+  use {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end,
+  }
   use("tamago324/nlsp-settings.nvim")    -- language server settings defined in json for
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
   use("tomv564/pyls-mypy")
@@ -217,19 +223,8 @@ return packer.startup(function(use)
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
 
+  use("pearofducks/ansible-vim")
 
-
-  -- CODY from sourcegraph
-  -- use(
-  --   {
-  --     "sourcegraph/cody.nvim",
-  --     config = function()
-  --       require("cody").setup({
-  --         accessToken = "sgp_4e2ac8ba2632df204c27b1b9808ecf7c1a8d4a87",
-  --       })
-  --     end
-  --   }
-  -- )
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end

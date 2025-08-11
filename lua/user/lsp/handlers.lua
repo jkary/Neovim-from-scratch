@@ -89,7 +89,6 @@ if not status_ok then
 	return
 end
 
--- M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 function M.enable_format_on_save()
@@ -99,7 +98,6 @@ function M.enable_format_on_save()
       autocmd BufWritePre * lua vim.lsp.buf.format()
     augroup end
   ]]
-  vim.notify "Enabled format on save"
 end
 
 function M.disable_format_on_save()

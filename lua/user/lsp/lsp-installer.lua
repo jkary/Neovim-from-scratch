@@ -1,41 +1,33 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-  return
-end
-
 local status_ok, util = pcall(require, "lspconfig/util")
 if not status_ok then
   return
 end
+-- LSP INSTALLER 
+-- The general idea here is to 
+-- 1. Enable the desired server in the servers table
+-- 2. Create a settings file in the lsp/settings directory which returns a table
+-- 3. Create an if statement to load the settings file based on server name. 
+-- 
+-- The local loop with then take care of loading all the settings at once.
+
 
 local servers = {
-  "cssls",
-  "cssmodules_ls",
-  "emmet_ls",
-  "html",
-  -- "jdtls",
-  "jsonls",
-  "lua_ls",
-  "tflint",
-  "tsserver",
-  "tailwindcss",
-  "clangd",
   --  "pyright",
   "pylsp",
-  "ruff_lsp",
+  "ruff",
   "jinja_lsp",
   --  "solc",
   -- "lua-ls",
   "tflint",
-  "tsserver",
+  "ts_ls",
   "gopls",
-  "golangci_lint_ls",
+  -- "golangci_lint_ls", -- fails to work on mac???
   "ansiblels",
-  "yamllint"
+  -- "yamllint"
 }
 
 local settings = {
-  debug = true,
+  -- debug = true,
   ensure_installed = servers,
   -- automatic_installation = false,
   ui = {
@@ -63,7 +55,6 @@ local settings = {
   -- install_root_dir = path.concat { vim.fn.stdpath "data", "lsp_servers" },
 }
 
-lsp_installer.setup(settings)
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status_ok then
@@ -137,12 +128,14 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", lsp_opts, opts)
   end
 
-  -- if server == "sumneko_lua" then
-  --   local sumneko_opts = require "user.lsp.settings.sumneko_lua"
-  --   opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  -- end
+  if server == "ansiblels" then
+    local lsp_opts = require "user.lsp.settings.ansible"
+    opts = vim.tbl_deep_extend("force", lsp_opts, opts)
+  end 
 
-  lspconfig[server].setup(opts)
+  if lspconfig.server ~= nil then
+    lspconfig[server].setup(opts)
+  end
 end
 
 -- TODO: add something to installer later

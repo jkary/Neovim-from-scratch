@@ -52,23 +52,23 @@ local options = {
   colorcolumn = "88",
   textwidth = 88,
   relativenumber = true,
+  laststatus = 3, -- Added for use with avante recommended options
 }
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append("c")
 
 for k, v in pairs(options) do
-  vim.opt[k] = v
+	vim.opt[k] = v
 end
 
--- 
--- Set python interpreter 
+--
+-- Set python interpreter
 --
 -- vim.g.python3_host_prog = "/Users/jkary/.pyenv/shims/python"
 
-
 -- Set blinking insert cursor
 --
-vim.cmd "set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150"
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd("set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150")
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])
+vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work

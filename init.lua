@@ -41,16 +41,5 @@ require("user.primeagen")
 require("user.markdown")
 require("user.illuminate")
 require("user.ansible")
+require("user.osc52")
 
--- In your init.lua
-vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-    },
-    paste = {
-        ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-        ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-    },
-}

@@ -187,6 +187,7 @@ return packer.startup(function(use)
 	-- Put this at the end after all plugins
 
 	use("pearofducks/ansible-vim")
+	use("ojroques/nvim-osc52")
 
 	-- Setup of avante
 	use("MunifTanjim/nui.nvim")

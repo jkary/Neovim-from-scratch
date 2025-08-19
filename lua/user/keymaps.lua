@@ -98,3 +98,9 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Move code visually.
 keymap("v", "<S-k>", ":m '<-2<CR>gv=gv", opts)
 keymap("v", "<S-j>", ":m '>+1<CR>gv=gv", opts)
+-- Add Fugitive 3-way merge mappings
+keymap("n", "<leader>2", ":diffget //2<CR>", opts)  -- take OURS (LOCAL)
+keymap("n", "<leader>3", ":diffget //3<CR>", opts)  -- take THEIRS (REMOTE)
+keymap("n", "]c", "]czz", opts)  -- next diff hunk, center
+keymap("n", "[c", "[czz", opts)  -- prev diff hunk, center
+

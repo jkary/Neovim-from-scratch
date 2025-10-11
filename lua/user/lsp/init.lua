@@ -1,5 +1,5 @@
-require("user.lsp.lsp-signature")
+-- require("user.lsp.lsp-signature")
 require("user.lsp.lsp-installer")
-require("user.lsp.handlers").setup()
-require("user.lsp.handlers").enable_format_on_save()
+-- require("user.lsp.handlers").setup()
+-- require("user.lsp.handlers").enable_format_on_save()
 -- require("user.lsp.null-ls")

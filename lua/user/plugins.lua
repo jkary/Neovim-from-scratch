@@ -118,12 +118,12 @@ return packer.startup(function(use)
 
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
-	use({
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
-		end,
-	})
+	-- use({
+	-- 	"williamboman/mason.nvim",
+	-- 	config = function()
+	-- 		require("mason").setup()
+	-- 	end,
+	-- })
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
 	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("tomv564/pyls-mypy")

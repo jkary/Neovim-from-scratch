@@ -1,7 +1,3 @@
-local status_ok, util = pcall(require, "lspconfig/util")
-if not status_ok then
-  return
-end
 -- LSP INSTALLER 
 -- The general idea here is to 
 -- 1. Enable the desired server in the servers table
@@ -17,7 +13,7 @@ local servers = {
   "ruff",
   "jinja_lsp",
   --  "solc",
-  -- "lua-ls",
+  "lua-ls",
   "tflint",
   "ts_ls",
   "gopls",
@@ -27,18 +23,10 @@ local servers = {
 }
 
 local settings = {
-  -- debug = true,
+  debug = false,
   ensure_installed = servers,
   -- automatic_installation = false,
   ui = {
-    icons = {
-      -- server_installed = "◍",
-      -- server_pending = "◍",
-      -- server_uninstalled = "◍",
-      -- server_installed = "✓",
-      -- server_pending = "➜",
-      -- server_uninstalled = "✗",
-    },
     keymaps = {
       toggle_server_expand = "<CR>",
       install_server = "i",
@@ -55,11 +43,6 @@ local settings = {
   -- install_root_dir = path.concat { vim.fn.stdpath "data", "lsp_servers" },
 }
 
-
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-  return
-end
 
 local opts = {}
 
@@ -110,7 +93,7 @@ for _, server in pairs(servers) do
     local gopls_opts = {
       cmd = { "gopls", "serve" },
       filetypes = { "go", "gomod" },
-      root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+      -- root_dir = lsp.config.util.root_pattern("go.work", "go.mod", ".git"),
       settings = {
         gopls = {
           analyses = {
@@ -133,10 +116,8 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", lsp_opts, opts)
   end 
 
-  if lspconfig.server ~= nil then
-    lspconfig[server].setup(opts)
+  if vim.lsp.config.server ~= nil then
+    vim.lsp.config[server].setup(opts)
   end
 end
 
--- TODO: add something to installer later
--- require("lspconfig").motoko.setup {}

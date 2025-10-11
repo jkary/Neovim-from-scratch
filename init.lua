@@ -15,7 +15,6 @@
 --         end
 --     end
 -- end
-
 require("user.options")
 require("user.keymaps")
 require("user.plugins")
@@ -28,6 +27,7 @@ require("user.autopairs")
 -- require "user.comment"
 require("user.gitsigns")
 require("user.nvim-tree")
+require("user.snacks")
 -- require("user.bufferline")
 -- require "user.lualine"
 -- require "user.toggleterm"
@@ -35,7 +35,7 @@ require("user.nvim-tree")
 -- require "user.impatient"
 -- require "user.indentline"
 -- require "user.alpha"
-require "user.whichkey"
+-- require "user.whichkey"
 require("user.autocommands")
 require("user.primeagen")
 require("user.markdown")

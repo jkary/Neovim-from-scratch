@@ -8,8 +8,6 @@ vim.filetype.add {
   },
 }
 
--- if you want to debug
-vim.lsp.set_log_level("debug")
 
 return {
   name = "jinja-lsp",

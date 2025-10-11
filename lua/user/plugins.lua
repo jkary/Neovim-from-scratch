@@ -192,18 +192,22 @@ return packer.startup(function(use)
 	use("MunifTanjim/nui.nvim")
 	use("MeanderingProgrammer/render-markdown.nvim")
 	use("HakonHarnes/img-clip.nvim")
-	use("zbirenbaum/copilot.lua")
+    use( {
+      "zbirenbaum/copilot.lua",
+      requires = {
+        "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+      },
+      cmd = "Copilot",
+      event = "InsertEnter",
+      config = function()
+        require("copilot").setup({})
+      end,
+    })
 	use("stevearc/dressing.nvim")
 	use("folke/snacks.nvim")
 
-	use({
-		"yetone/avante.nvim",
-		branch = "main",
-		run = "make",
-		config = function()
-			require("user.avante").setup()
-		end,
-	})
+
+    use("folke/snacks.nvim")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

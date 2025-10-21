@@ -30,7 +30,7 @@ require("user.nvim-tree")
 require("user.snacks")
 require("user.claude")
 -- require("user.bufferline")
-require "user.lualine"
+-- require "user.lualine"
 -- require "user.toggleterm"
 -- require "user.project"
 -- require "user.impatient"
@@ -42,8 +42,8 @@ require("user.primeagen")
 require("user.markdown")
 require("user.illuminate")
 require("user.ansible")
+require("user.osc52")
 
--- In your init.lua
 vim.g.clipboard = {
   name = 'OSC 52',
   copy = {

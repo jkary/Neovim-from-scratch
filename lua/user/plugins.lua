@@ -28,7 +28,6 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
   augroup packer_user_config
@@ -125,7 +124,7 @@ return packer.startup(function(use)
 	-- 	end,
 	-- })
 	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+	-- use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 	use("tomv564/pyls-mypy")
 	-- use("microsoft/pyright")
 	use("juliosueiras/terraform-lsp")
@@ -192,22 +191,21 @@ return packer.startup(function(use)
 	use("MunifTanjim/nui.nvim")
 	use("MeanderingProgrammer/render-markdown.nvim")
 	use("HakonHarnes/img-clip.nvim")
-    use( {
-      "zbirenbaum/copilot.lua",
-      requires = {
-        "copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
-      },
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup({})
-      end,
-    })
+	-- use({
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	requires = {
+	-- 		"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+	-- 	},
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	config = function()
+	-- 		require("copilot").setup({})
+	-- 	end,
+	-- })
 	use("stevearc/dressing.nvim")
 	use("folke/snacks.nvim")
 
-
-    use("folke/snacks.nvim")
+	use( "coder/claudecode.nvim")
 
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()

@@ -88,6 +88,10 @@ lualine.setup {
     lualine_b = { diagnostics },
     -- lualine_c = { _gps },
     lualine_c = {
+      {
+        "filename",
+        path = 2,
+      },
       { nvim_gps, cond = hide_in_width },
     },
     -- lualine_x = { "encoding", "fileformat", "filetype" },

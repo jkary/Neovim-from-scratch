@@ -33,6 +33,19 @@ return {
         },
         jedi = {
           extra_paths = { "~/samples/scaled_lab/trex/v3.04/automation/trex_control_plane/interactive" }
+        },
+        pycodestyle = {
+          enabled = true,
+          maxLineLength = 88,
+        },
+        pyflakes = {
+          enabled = true,
+        },
+        autopep8 = {
+          enabled = false,
+        },
+        yapf = {
+          enabled = false,
         }
       },
     },

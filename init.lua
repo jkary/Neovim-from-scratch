@@ -30,7 +30,7 @@ require("user.nvim-tree")
 require("user.snacks")
 require("user.claude")
 -- require("user.bufferline")
--- require "user.lualine"
+require "user.lualine"
 -- require "user.toggleterm"
 -- require "user.project"
 -- require "user.impatient"
@@ -43,15 +43,3 @@ require("user.markdown")
 require("user.illuminate")
 require("user.ansible")
 require("user.osc52")
-
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}

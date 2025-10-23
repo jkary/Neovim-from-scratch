@@ -68,19 +68,19 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- Terminal --
 -- Better terminal navigation
 -- OS-specific Alt key mappings
-if is_mac then
+-- if is_mac then
   -- macOS: Alt keys generate special Unicode characters
   keymap("t", "˙", "<C-\\><C-N><C-W>h", term_opts) -- Alt+h
   keymap("t", "∆", "<C-\\><C-N><C-W>j", term_opts) -- Alt+j
   keymap("t", "˚", "<C-\\><C-N><C-W>k", term_opts) -- Alt+k
   keymap("t", "¬", "<C-\\><C-N><C-W>l", term_opts) -- Alt+l
-elseif is_linux then
-  -- Linux: Standard Alt key sequences work
-  keymap("t", "<A-h>", "<C-\\><C-N><C-w>h", term_opts)
-  keymap("t", "<A-j>", "<C-\\><C-N><C-w>j", term_opts)
-  keymap("t", "<A-k>", "<C-\\><C-N><C-w>k", term_opts)
-  keymap("t", "<A-l>", "<C-\\><C-N><C-w>l", term_opts)
-end
+-- elseif is_linux then
+--   -- Linux: Standard Alt key sequences work
+--   keymap("t", "<A-h>", "<C-\\><C-N><C-W>h", term_opts)
+--   keymap("t", "<A-j>", "<C-\\><C-N><C-W>j", term_opts)
+--   keymap("t", "<A-k>", "<C-\\><C-N><C-W>k", term_opts)
+--   keymap("t", "<A-l>", "<C-\\><C-N><C-W>l", term_opts)
+-- end
 
 -- Try both representations for buffer switching
 keymap("t", "<C-^>", "<C-\\><C-N><C-^>", term_opts)  -- Use ctrl ^ to switch bufs

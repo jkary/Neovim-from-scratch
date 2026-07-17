@@ -1,10 +1,23 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-if [ -d ~/.config/nvim ]; then
-  echo 'Moving init.lua to old_init_lua...'
-  mv ~/.config/nvim/init.lua ~/.config/nvim/old_init_lua
-  ln -s ~/src/lua/Neovim-from-scratch/init.lua ~/.config/nvim/init.lua
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+config_home="${XDG_CONFIG_HOME:-"${HOME}/.config"}"
+nvim_config="${config_home}/nvim"
+
+mkdir -p "${config_home}"
+
+if [ -e "${nvim_config}" ] && [ ! -L "${nvim_config}" ]; then
+  backup="${nvim_config}.backup.$(date +%Y%m%d%H%M%S)"
+  echo "Moving existing config to ${backup}"
+  mv "${nvim_config}" "${backup}"
 fi
 
-echo Installing plugins in headless mode.
-nvim --headless -c 'PackerUpdate' -c 'qall'
+if [ -L "${nvim_config}" ]; then
+  rm "${nvim_config}"
+fi
+
+ln -s "${repo_dir}" "${nvim_config}"
+
+echo "Installing plugins in headless mode."
+nvim --headless "+Lazy! sync" +qa

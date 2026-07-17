@@ -1,65 +1,56 @@
-# Neovim from scratch
+# Neovim configuration
 
-Each video will be associated with a branch so checkout the one you are interested in, you can follow along with this [playlist](https://www.youtube.com/watch?v=ctH-a-1eUME&list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ).
+Personal Neovim configuration, originally forked from LunarVim's
+`Neovim-from-scratch`, now maintained as a standalone config.
 
-## Try out this config
+## Requirements
 
-Make sure to remove or move your current `nvim` directory
+- Neovim 0.12 or newer
+- Git, `rg`, `make`, and a C compiler for native plugin builds
+- Node.js/npm for `markdown-preview.nvim`
+- A Nerd Font, preferably `Symbols Nerd Font Mono`, for completion and UI icons
+- Optional language tools managed through Mason: `lua_ls`, `pylsp`, `ruff`, `gopls`,
+  `golangci_lint_ls`, `jsonls`, and `ansiblels`
 
-**IMPORTANT** Requires [Neovim v0.6.0](https://github.com/neovim/neovim/releases/tag/v0.6.0) or [Nightly](https://github.com/neovim/neovim/releases/tag/nightly). 
+## Layout
+
+- `init.lua` sets leaders and loads the core user modules.
+- `lua/user/plugins.lua` bootstraps `lazy.nvim` and imports plugin specs from
+  `lua/plugins/`.
+- `lua/plugins/` contains focused Lazy specs for UI, completion, LSP, Git,
+  formatting, testing, Markdown, editor tools, and AI helpers.
+- `lua/user/` contains the actual configuration modules consumed by those specs.
+- `lua/user/lsp/settings/` contains per-server LSP settings.
+
+## Install
+
+Clone this repository as your Neovim config:
+
+```bash
+git clone https://github.com/jkary/Neovim-from-scratch.git ~/.config/nvim
+nvim
 ```
-git clone https://github.com/LunarVim/Neovim-from-scratch.git ~/.config/nvim
+
+Or run the install helper from a checked-out copy:
+
+```bash
+./install.bash
 ```
 
-Run `nvim` and wait for the plugins to be installed 
+On first launch, Lazy will install plugins automatically. To force a sync:
 
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim) 
-
-## Get healthy
-
-Open `nvim` and enter the following:
-
+```vim
+:Lazy sync
 ```
+
+## Health
+
+Run:
+
+```vim
 :checkhealth
 ```
 
-You'll probably notice you don't have support for copy/paste also that python and node haven't been setup
-
-So let's fix that
-
-First we'll fix copy/paste
-
-- On mac `pbcopy` should be builtin
-
-- On Ubuntu
-
-  ```
-  sudo apt install xsel
-  ```
-
-- On Arch Linux
-
-  ```
-  sudo pacman -S xsel
-  ```
-
-Next we need to install python support (node is optional)
-
-- Neovim python support
-
-  ```
-  pip install pynvim
-  ```
-
-- Neovim node support
-
-  ```
-  npm i -g neovim
-  ```
----
-
-**NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
-
-> The computing scientist's main challenge is not to get confused by the complexities of his own making. 
-
-\- Edsger W. Dijkstra
+A few external tools are intentionally optional. Mason installs language servers,
+while formatters such as `prettier`, `prettierd`, `gofumpt`, `goimports`, and
+`yamlfmt` are used by Conform when available.

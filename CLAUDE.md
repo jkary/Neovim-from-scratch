@@ -1,107 +1,83 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working in this repository.
 
 ## Architecture Overview
 
-This is a Neovim configuration based on the "Neovim from scratch" approach using Packer.nvim as the plugin manager. The configuration is organized in a modular structure under `lua/user/`:
+This is a standalone personal Neovim configuration. It uses `lazy.nvim` for
+plugin management and Neovim's native 0.11+ LSP configuration APIs.
 
 ### Core Structure
-- `init.lua` - Main entry point that requires all modules
-- `lua/user/plugins.lua` - Plugin definitions and setup using Packer
-- `lua/user/options.lua` - Neovim options and settings
-- `lua/user/keymaps.lua` - Key mappings with OS-specific handling
-- `lua/user/lsp/` - LSP configuration with language-specific settings
-- `lua/user/colorscheme.lua` - Theme configuration
+
+- `init.lua` - Main entry point; sets leaders and loads core modules.
+- `lua/user/plugins.lua` - Bootstraps Lazy and imports `lua/plugins/`.
+- `lua/plugins/` - Focused Lazy specs by area: UI, completion, LSP, Git,
+  formatting, testing, Markdown, editor tools, and AI helpers.
+- `lua/user/options.lua` - Editor options.
+- `lua/user/keymaps.lua` - Key mappings, including macOS terminal mappings.
+- `lua/user/lsp/` - LSP setup, handlers, and per-server settings.
+- `lua/user/icons.lua` - Shared Nerd Font / Codicon glyph table.
 
 ### Key Components
-- **Plugin Manager**: Packer.nvim with auto-installation
-- **LSP**: Custom LSP setup without Mason, uses individual language servers
-- **Completion**: nvim-cmp with multiple sources including TabNine AI
-- **File Management**: nvim-tree for file explorer
-- **Fuzzy Finding**: Telescope for file/text search
-- **Git Integration**: Fugitive + Gitsigns
-- **Syntax**: Treesitter for highlighting and parsing
-- **AI Integration**: Claude Code plugin and TabNine for completions
 
-### LSP Configuration
-LSP settings are organized by language in `lua/user/lsp/settings/`:
-- Python: pyright, python_lsp_server, ruff_lsp support
-- Go: golang.lua settings
-- Terraform: terraform_lsp.lua
-- Lua: luals.lua for Neovim development
-- Ansible: ansible.lua for playbook editing
-- JSON: jsonls.lua with SchemaStore integration
+- Plugin manager: `lazy.nvim`
+- LSP: `mason.nvim`, `mason-lspconfig.nvim`, `nvim-lspconfig`, and native
+  `vim.lsp.config`
+- Completion: `nvim-cmp` with LuaSnip, LSP, buffer, path, emoji, cmdline, and
+  DAP sources
+- Formatting: `conform.nvim`
+- File management: `nvim-tree.lua` and `oil.nvim`
+- Fuzzy finding: Telescope
+- Git integration: Fugitive, Gitsigns, Diffview, and Neogit
+- Syntax/navigation: Treesitter, Treesitter context, Flash, Trouble, BQF
+- AI helpers: Claude Code and Avante
 
 ## Common Development Tasks
 
 ### Plugin Management
+
+```vim
+:Lazy sync
+:Lazy update
+:Lazy clean
+```
+
+Headless sync for validation:
+
 ```bash
-# Install/update plugins (from within Neovim)
-:PackerSync
-
-# Clean unused plugins
-:PackerClean
-
-# Plugin installation is automatic on first run
-nvim --headless -c 'PackerUpdate' -c 'qall'
+nvim --headless "+Lazy! sync" +qa
 ```
 
 ### Health Check
-```bash
-# Check Neovim health and dependencies
+
+```vim
 :checkhealth
 ```
 
-### Requirements
-- Neovim v0.6.0 or later
-- Python support: `pip install pynvim`
-- Node.js support: `npm i -g neovim` (optional)
-- System clipboard: `xsel` (Linux) or `pbcopy` (macOS)
+### Startup Check
+
+```bash
+nvim --headless +qa
+```
 
 ## Configuration Patterns
 
-### Module Loading
-All modules are loaded via `require()` calls in `init.lua`. Disabled modules are commented out rather than removed.
+- Keep plugin specifications in `lua/plugins/`; keep plugin behavior in
+  `lua/user/` modules.
+- Prefer Neovim's native APIs over legacy `lspconfig.setup`, old diagnostic
+  helpers, or pre-Lazy plugin commands.
+- Use Mason's current `automatic_enable` behavior. The old
+  `automatic_installation` setting is no longer supported.
+- Use Conform as the formatting entry point. Avoid reintroducing Neoformat,
+  YAPF-only, or Black-only formatting paths unless there is a specific reason.
+- Keep icons centralized in `lua/user/icons.lua` so completion, diagnostics, and
+  statusline glyphs stay consistent.
 
-### Options Setting
-Options are defined in a table in `options.lua` and applied via a loop using `vim.opt[k] = v`.
+## Notes
 
-### Key Mappings
-- Cross-platform key handling for macOS and Linux differences
-- OS detection using `vim.fn.has()` 
-- Terminal mode mappings handle Alt key variations between platforms
-- Fugitive merge conflict resolution mappings (`<leader>2`, `<leader>3`)
-
-### LSP Setup
-- Language servers configured individually without Mason
-- Settings stored in separate files per language
-- Protected calls (`pcall`) used for error handling
-- Custom handlers and formatting setup available but commented out
-
-### Plugin Configuration
-- Plugins configured inline within the Packer specification
-- Complex plugins have dedicated configuration files in `lua/user/`
-- Auto-installation and bootstrapping handled automatically
-
-## Special Features
-
-### Clipboard Integration
-OSC52 clipboard integration for terminal/SSH usage configured in `init.lua` and `osc52.lua`.
-
-### AI Integration
-- TabNine AI completion configured with custom settings
-- Claude Code plugin for AI assistance
-- Multiple completion sources in nvim-cmp
-
-### Git Workflow
-- Fugitive for Git operations with custom merge conflict mappings
-- Gitsigns for inline Git status
-- Git worktree support via ThePrimeagen's plugin
-
-### Development Tools
-- Ansible syntax support and LSP
-- Terraform LSP integration
-- Python formatting with yapf and black
-- Markdown preview capabilities
-- require('lsp-config') framework is deprecated
+- This config assumes a modern Nerd Font. Missing or boxed icons usually mean the
+  terminal font needs to be changed.
+- OSC52 clipboard support is only initialized when Neovim has a UI attached, so
+  headless validation remains quiet.
+- Stale modules may still exist under `lua/user/` for reference, but only modules
+  referenced by `init.lua` or `lua/plugins/` are active.

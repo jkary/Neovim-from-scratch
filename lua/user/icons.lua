@@ -65,7 +65,7 @@ return {
 		Comment = " ",
 		Bug = " ",
 		Code = " ",
-		Telescope = " ",
+		Picker = " ",
 		Gear = " ",
 		Package = " ",
 		List = " ",

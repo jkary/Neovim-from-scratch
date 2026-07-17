@@ -4,24 +4,6 @@ return {
 	"stevearc/dressing.nvim",
 
 	{
-		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-fzy-native.nvim",
-			"nvim-telescope/telescope-project.nvim",
-		},
-		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
-		},
-		config = function()
-			require("user.telescope")
-		end,
-	},
-	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },

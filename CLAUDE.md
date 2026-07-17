@@ -27,7 +27,7 @@ plugin management and Neovim's native 0.11+ LSP configuration APIs.
   DAP sources
 - Formatting: `conform.nvim`
 - File management: `nvim-tree.lua` and `oil.nvim`
-- Fuzzy finding: Telescope
+- Fuzzy finding: Snacks picker
 - Git integration: Fugitive, Gitsigns, Diffview, and Neogit
 - Syntax/navigation: Treesitter, Treesitter context, Flash, Trouble, BQF
 - AI helpers: Claude Code and Avante

@@ -47,7 +47,9 @@ return {
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
-		opts = {},
+		config = function()
+			require("user.whichkey")
+		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",

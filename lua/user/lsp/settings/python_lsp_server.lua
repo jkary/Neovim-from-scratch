@@ -17,6 +17,9 @@ local function setup_venv_dir(workspace)
 end
 
 return {
+  cmd = { 'pylsp' },
+  filetypes = { 'python' },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'tox.ini', '.git' },
   settings = {
     pylsp = {
       plugins = {
@@ -32,7 +35,11 @@ return {
           enabled = true,
         },
         jedi = {
+          environment = setup_venv_dir(vim.fn.getcwd()),
           extra_paths = { "~/samples/scaled_lab/trex/v3.04/automation/trex_control_plane/interactive" }
+        },
+        jedi_references = {
+          enabled = true,
         },
         pycodestyle = {
           enabled = true,

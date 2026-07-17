@@ -24,6 +24,7 @@ require("user.lsp")
 require("user.telescope")
 require("user.treesitter")
 require("user.autopairs")
+require("user.fugitive")
 -- require "user.comment"
 require("user.gitsigns")
 require("user.nvim-tree")

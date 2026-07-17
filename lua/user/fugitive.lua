@@ -9,6 +9,6 @@ keymap("n", "<leader>ga", ":Git fetch --all<CR>", { noremap = true, silent = tru
 keymap("n", "<leader>grum", ":Git rebase upstream/master<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>grom", ":Git rebase origin/master<CR>", { noremap = true, silent = true })
 
-keymap("n", "<leader>gh :diffget //3<CR>", opts)
-keymap("n", "<leader>gu :diffget //2<CR>", opts)
-keymap("n", "<leader>gs :G<CR>", opts)
+keymap("n", "<leader>gh", ":diffget //3<CR>", opts)
+keymap("n", "<leader>gu", ":diffget //2<CR>", opts)
+keymap("n", "<leader>gs", ":G<CR>", opts)

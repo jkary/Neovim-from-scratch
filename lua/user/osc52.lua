@@ -1,9 +1,10 @@
--- Simple OSC52 implementation that copies yank to system clipboard
+-- OSC52 implementation that copies yank AND cut operations to system clipboard
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('OSC52Yank', { clear = true }),
   pattern = '*',
   callback = function()
-    if vim.v.event.operator == 'y' then
+    -- Handle both yank (y) and delete/cut operations (d, c, x)
+    if vim.v.event.operator == 'y' or vim.v.event.operator == 'd' or vim.v.event.operator == 'c' then
       require('osc52').copy_register('"')
     end
   end

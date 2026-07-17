@@ -97,12 +97,12 @@ local mappings = {
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
   p = {
-    name = "Packer",
-    c = { "<cmd>PackerCompile<cr>", "Compile" },
-    i = { "<cmd>PackerInstall<cr>", "Install" },
-    s = { "<cmd>PackerSync<cr>", "Sync" },
-    S = { "<cmd>PackerStatus<cr>", "Status" },
-    u = { "<cmd>PackerUpdate<cr>", "Update" },
+    name = "Plugins",
+    c = { "<cmd>Lazy clean<cr>", "Clean" },
+    i = { "<cmd>Lazy install<cr>", "Install" },
+    s = { "<cmd>Lazy sync<cr>", "Sync" },
+    S = { "<cmd>Lazy<cr>", "Status" },
+    u = { "<cmd>Lazy update<cr>", "Update" },
   },
 
   o = {
@@ -194,7 +194,7 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
+    I = { "<cmd>Mason<cr>", "Mason" },
     j = {
       "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
       "Next Diagnostic",
